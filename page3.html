@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday - Page 3</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        .glass-frame {
+            width: 150px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted playsinline loop class="background-video">
+        <source src="videos/bg3.mp4" type="video/mp4">
+    </video>
+    <div id="photos">
+        <img src="images/frame_glass.png" class="glass-frame" onclick="revealPhoto(this, 'images/Cute_Photo_1.png')">
+        <img src="images/frame_glass.png" class="glass-frame" onclick="revealPhoto(this, 'images/Cute_Photo_2.png')">
+        <img src="images/frame_glass.png" class="glass-frame" onclick="revealPhoto(this, 'images/Cute_Photo_3.png')">
+    </div>
+    <br>
+    <audio controls>
+        <source src="audio/voice_message.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        function revealPhoto(element, newSrc) {
+            element.src = newSrc;
+        }
+    </script>
+</body>
+</html>

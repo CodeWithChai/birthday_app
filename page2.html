@@ -1,0 +1,328 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Happy Birthday - Page 2</title>-->
+<!--    <style>-->
+<!--        body, html {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            height: 100%;-->
+<!--            width: 100%;-->
+<!--            overflow: hidden;-->
+<!--            font-family: "Brush Script MT", cursive;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .background-video {-->
+<!--            position: fixed;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            min-width: 100%;-->
+<!--            min-height: 100%;-->
+<!--            object-fit: cover;-->
+<!--            z-index: -1;-->
+<!--        }-->
+
+<!--        .balloon-row {-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            gap: 30px;-->
+<!--            margin: 20px 0;-->
+<!--            flex-wrap: wrap;-->
+<!--            z-index: 1;-->
+<!--        }-->
+
+<!--        .balloon-container {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--            width: 120px;-->
+<!--        }-->
+
+<!--        .balloon {-->
+<!--            width: 100px;-->
+<!--            cursor: pointer;-->
+<!--            transition: transform 0.3s ease, opacity 0.5s ease;-->
+<!--        }-->
+
+<!--        .balloon:hover {-->
+<!--            transform: scale(1.1);-->
+<!--        }-->
+
+<!--        .message {-->
+<!--            margin-top: 8px;-->
+<!--            color: black;-->
+<!--            font-size: 18px;-->
+<!--            text-shadow: 1px 1px 3px black;-->
+<!--            min-height: 24px;-->
+<!--        }-->
+
+<!--        a {-->
+<!--            position: fixed;-->
+<!--            bottom: 30px;-->
+<!--            right: 30px;-->
+<!--            font-size: 20px;-->
+<!--            text-decoration: none;-->
+<!--            background: rgba(0, 0, 0, 0.6);-->
+<!--            color: white;-->
+<!--            padding: 12px 24px;-->
+<!--            border-radius: 14px;-->
+<!--            font-family: sans-serif;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <video autoplay muted playsinline loop class="background-video">-->
+<!--        <source src="videos/bg2.mp4" type="video/mp4">-->
+<!--    </video>-->
+
+<!--    <div class="balloon-row">-->
+<!--        <div class="balloon-container">-->
+<!--            <img src="images/balloon1.png" class="balloon" onclick="popBalloon(this, 0)">-->
+<!--            <p class="message"></p>-->
+<!--        </div>-->
+<!--        <div class="balloon-container">-->
+<!--            <img src="images/balloon2.png" class="balloon" onclick="popBalloon(this, 1)">-->
+<!--            <p class="message"></p>-->
+<!--        </div>-->
+<!--        <div class="balloon-container">-->
+<!--            <img src="images/balloon3.png" class="balloon" onclick="popBalloon(this, 2)">-->
+<!--            <p class="message"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="balloon-row">-->
+<!--        <div class="balloon-container">-->
+<!--            <img src="images/balloon4.png" class="balloon" onclick="popBalloon(this, 3)">-->
+<!--            <p class="message"></p>-->
+<!--        </div>-->
+<!--        <div class="balloon-container">-->
+<!--            <img src="images/balloon5.png" class="balloon" onclick="popBalloon(this, 4)">-->
+<!--            <p class="message"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <a href="page3.html">Continue</a>-->
+
+<!--    <script>-->
+<!--        const messages = [-->
+<!--            "I love your smile",-->
+<!--            "I love how you adore me",-->
+<!--            "I cherish you so much",-->
+<!--            "I want you life-long",-->
+<!--            "You're the best boyfriend ever!"-->
+<!--        ];-->
+
+<!--        function popBalloon(balloon, index) {-->
+<!--            const container = balloon.parentElement;-->
+<!--            const msg = container.querySelector(".message");-->
+
+<!--            // Balloon pop animation-->
+<!--            balloon.style.opacity = "0";-->
+<!--            setTimeout(() => {-->
+<!--                balloon.style.display = "none";-->
+<!--                msg.textContent = messages[index];-->
+<!--            }, 500);-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday - Page 2</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: "Brush Script MT", cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .balloon-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            z-index: 1;
+        }
+
+        .balloon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            position: relative;
+        }
+
+        .balloon {
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            z-index: 2;
+        }
+
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+
+        .message {
+            margin-top: 8px;
+            color: white;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px black;
+            min-height: 24px;
+            z-index: 2;
+        }
+
+        a {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 20px;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-family: sans-serif;
+        }
+
+        /* Floating heart styles */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            transform: rotate(45deg);
+            animation: floatUp 2s ease-out forwards;
+            opacity: 0.8;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted playsinline loop class="background-video">
+        <source src="videos/bg2.mp4" type="video/mp4">
+    </video>
+
+    <div class="balloon-row">
+        <div class="balloon-container">
+            <img src="images/balloon1.png" class="balloon" onclick="popBalloon(this, 0)">
+            <p class="message"></p>
+        </div>
+        <div class="balloon-container">
+            <img src="images/balloon2.png" class="balloon" onclick="popBalloon(this, 1)">
+            <p class="message"></p>
+        </div>
+        <div class="balloon-container">
+            <img src="images/balloon3.png" class="balloon" onclick="popBalloon(this, 2)">
+            <p class="message"></p>
+        </div>
+    </div>
+
+    <div class="balloon-row">
+        <div class="balloon-container">
+            <img src="images/balloon4.png" class="balloon" onclick="popBalloon(this, 3)">
+            <p class="message"></p>
+        </div>
+        <div class="balloon-container">
+            <img src="images/balloon5.png" class="balloon" onclick="popBalloon(this, 4)">
+            <p class="message"></p>
+        </div>
+    </div>
+
+    <a href="page3.html">Continue</a>
+
+    <script>
+        const messages = [
+            "I love your smile",
+            "I love how you adore me",
+            "I cherish you so much",
+            "I want you life-long",
+            "You're the best boyfriend ever!"
+        ];
+
+        function popBalloon(balloon, index) {
+            const container = balloon.parentElement;
+            const msg = container.querySelector(".message");
+
+            // Make the balloon disappear
+            balloon.style.opacity = "0";
+            setTimeout(() => {
+                balloon.style.display = "none";
+                msg.textContent = messages[index];
+                launchHearts(container);
+            }, 500);
+        }
+
+        function launchHearts(container) {
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = `${Math.random() * 40 + 40}px`;
+                heart.style.top = `0px`;
+                heart.style.animationDelay = `${i * 0.1}s`;
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

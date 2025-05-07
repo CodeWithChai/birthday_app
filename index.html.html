@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday - Page 1</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            font-family: sans-serif;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .envelope {
+            width: 300px;
+            max-width: 80%;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin: 10px 0;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        #opened,
+        #letter,
+        #continueBtn {
+            display: none;
+        }
+
+        #letter {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+        }
+
+        #letter.show {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #continueBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #continueBtn.show {
+            opacity: 1;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted playsinline loop class="background-video">
+        <source src="videos/bg1.mp4" type="video/mp4">
+    </video>
+
+    <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()">
+    <img id="opened" class="envelope" src="images/opened_envelope.png">
+    <img id="letter" class="envelope" src="images/birthday_letter.png">
+
+    <a href="page2.html" id="continueBtn">Continue</a>
+
+    <script>
+        function openEnvelope() {
+            document.getElementById('closed').style.display = 'none';
+            document.getElementById('opened').style.display = 'block';
+
+            setTimeout(() => {
+                const letter = document.getElementById('letter');
+                letter.classList.add('show');
+            }, 3000);
+
+            setTimeout(() => {
+                const continueBtn = document.getElementById('continueBtn');
+                continueBtn.classList.add('show');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
