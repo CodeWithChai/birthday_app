@@ -63,7 +63,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 150px;
+            width: 450px; /* 3x larger than before */
             cursor: pointer;
             opacity: 0;
             transition: opacity 1s ease;
@@ -95,6 +95,12 @@
         #openHint.show {
             display: block;
             animation: fadeInLeft 1s ease forwards;
+        }
+
+        @media (max-width: 600px) {
+            #continueImage {
+                width: 300px; /* Adjust slightly for small screens */
+            }
         }
     </style>
 </head>
