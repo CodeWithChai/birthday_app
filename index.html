@@ -42,7 +42,8 @@
 
         #opened,
         #letter,
-        #continueBtn {
+        #continueImage,
+        #openHint {
             display: none;
         }
 
@@ -58,23 +59,42 @@
             transform: scale(1);
         }
 
-        #continueBtn {
+        #continueImage {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            font-size: 18px;
-            color: white;
-            text-decoration: none;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 10px 20px;
-            border-radius: 12px;
+            width: 150px;
+            cursor: pointer;
             opacity: 0;
             transition: opacity 1s ease;
         }
 
-        #continueBtn.show {
+        #continueImage.show {
+            display: block;
             opacity: 1;
-            display: inline-block;
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        #openHint {
+            position: absolute;
+            top: 65%;
+            left: 58%;
+            width: 120px;
+        }
+
+        #openHint.show {
+            display: block;
+            animation: fadeInLeft 1s ease forwards;
         }
     </style>
 </head>
@@ -86,8 +106,12 @@
     <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()">
     <img id="opened" class="envelope" src="images/opened_envelope.png">
     <img id="letter" class="envelope" src="images/birthday_letter.png">
+    <img id="openHint" src="images/open.png">
 
-    <a href="page2.html" id="continueBtn">Continue</a>
+    <!-- Image acting as continue button -->
+    <a href="page2.html">
+        <img id="continueImage" src="images/continue.png" alt="Continue">
+    </a>
 
     <script>
         function openEnvelope() {
@@ -95,14 +119,16 @@
             document.getElementById('opened').style.display = 'block';
 
             setTimeout(() => {
-                const letter = document.getElementById('letter');
-                letter.classList.add('show');
+                document.getElementById('letter').classList.add('show');
             }, 3000);
 
             setTimeout(() => {
-                const continueBtn = document.getElementById('continueBtn');
-                continueBtn.classList.add('show');
+                document.getElementById('continueImage').classList.add('show');
             }, 4000);
+
+            setTimeout(() => {
+                document.getElementById('openHint').classList.add('show');
+            }, 3000);
         }
     </script>
 </body>
