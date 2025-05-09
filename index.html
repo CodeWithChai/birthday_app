@@ -29,7 +29,7 @@
     }
 
     .envelope {
-      width: 150px; /* 0.5x smaller than original 300px */
+      width: 150px; /* smaller envelope */
       max-width: 80%;
       cursor: pointer;
       transition: transform 0.3s;
@@ -42,19 +42,17 @@
 
     #opened,
     #letter,
-    #continueImage,
-    #openHint {
+    #continueImage {
       display: none;
     }
 
-    /* Letter animation */
     #letter {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 180px;
       max-width: 80%;
-      transform: translate(-50%, 30px) scale(0.95); /* Starts below envelope center */
+      transform: translate(-50%, 30px) scale(0.95);
       opacity: 0;
       z-index: 2;
       transition: opacity 1s ease, transform 1s ease;
@@ -63,7 +61,7 @@
     #letter.show {
       display: block;
       opacity: 1;
-      transform: translate(-50%, -80px) scale(1); /* Slides up and centers above envelope */
+      transform: translate(-50%, -80px) scale(1);
     }
 
     #continueImage {
@@ -94,14 +92,14 @@
 
     #openHint {
       position: absolute;
-      top: 70%;
-      left: 58%;
-      width: 120px;
+      top: calc(100% + 5px);
+      width: 100px;
+      opacity: 1;
+      animation: fadeInLeft 1s ease infinite alternate;
     }
 
-    #openHint.show {
-      display: block;
-      animation: fadeInLeft 1s ease forwards;
+    #openHint.hidden {
+      display: none;
     }
 
     @media (max-width: 600px) {
@@ -116,6 +114,10 @@
       #continueImage {
         width: 300px;
       }
+
+      #openHint {
+        width: 80px;
+      }
     }
   </style>
 </head>
@@ -124,12 +126,14 @@
     <source src="videos/bg1.mp4" type="video/mp4" />
   </video>
 
-  <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()" />
+  <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+    <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()" />
+    <img id="openHint" src="images/open.png" />
+  </div>
+
   <img id="opened" class="envelope" src="images/opened_envelope.png" />
   <img id="letter" src="images/birthday_letter.png" />
-  <img id="openHint" src="images/open.png" />
 
-  <!-- Continue image button -->
   <a href="page2.html">
     <img id="continueImage" src="images/continue.png" alt="Continue" />
   </a>
@@ -137,19 +141,16 @@
   <script>
     function openEnvelope() {
       document.getElementById('closed').style.display = 'none';
+      document.getElementById('openHint').style.display = 'none';
       document.getElementById('opened').style.display = 'block';
 
       setTimeout(() => {
         document.getElementById('letter').classList.add('show');
-      }, 3000);
+      }, 2000); // Show letter 2s after opened envelope
 
       setTimeout(() => {
         document.getElementById('continueImage').classList.add('show');
-      }, 4000);
-
-      setTimeout(() => {
-        document.getElementById('openHint').classList.add('show');
-      }, 3000);
+      }, 15000); // Show continue button after 15s
     }
   </script>
 </body>
