@@ -29,8 +29,8 @@
         }
 
         .envelope {
-            width: 300px;
-            max-width: 80%;
+            width: 600px; /* 2x bigger */
+            max-width: 90%;
             cursor: pointer;
             transition: transform 0.3s;
             margin: 10px 0;
@@ -47,23 +47,29 @@
             display: none;
         }
 
+        /* Show letter with slide-up effect */
         #letter {
+            position: absolute;
+            top: 50%;
+            width: 500px;
+            max-width: 80%;
+            z-index: 2;
             opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease;
+            transform: translateY(50px) scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         #letter.show {
             display: block;
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(-200px) scale(1);
         }
 
         #continueImage {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 450px; /* 3x larger than before */
+            width: 450px;
             cursor: pointer;
             opacity: 0;
             transition: opacity 1s ease;
@@ -87,7 +93,7 @@
 
         #openHint {
             position: absolute;
-            top: 65%;
+            top: 70%;
             left: 58%;
             width: 120px;
         }
@@ -98,8 +104,16 @@
         }
 
         @media (max-width: 600px) {
+            .envelope {
+                width: 350px;
+            }
+
+            #letter {
+                width: 300px;
+            }
+
             #continueImage {
-                width: 300px; /* Adjust slightly for small screens */
+                width: 300px;
             }
         }
     </style>
@@ -111,10 +125,10 @@
 
     <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()">
     <img id="opened" class="envelope" src="images/opened_envelope.png">
-    <img id="letter" class="envelope" src="images/birthday_letter.png">
+    <img id="letter" src="images/birthday_letter.png">
     <img id="openHint" src="images/open.png">
 
-    <!-- Image acting as continue button -->
+    <!-- Continue button image -->
     <a href="page2.html">
         <img id="continueImage" src="images/continue.png" alt="Continue">
     </a>
