@@ -2,25 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Video Background with Clickable Envelope</title>
   <style>
     * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    body, html {
-      width: 100%;
+    html, body {
       height: 100%;
+      width: 100%;
       overflow: hidden;
+      background-color: black;
     }
 
     video {
       position: fixed;
       top: 0;
       left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -1;
     }
@@ -31,12 +34,13 @@
       left: 51.3%;
       width: 33.6%;
       height: 20.6%;
+      transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 1;
     }
 
     .click-target:hover {
-      outline: 2px solid pink; /* Optional: for debugging */
+      outline: 2px solid pink; /* For testing only; remove in production */
     }
   </style>
 </head>
