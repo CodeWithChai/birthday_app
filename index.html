@@ -5,60 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>HBD BABY</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
       width: 100%;
+      height: 100%;
       overflow: hidden;
       background-color: black;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: black;
-      z-index: -2;
-    }
-
     video {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
       z-index: -1;
-      background-color: black;
     }
 
     .click-target {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       transform: translate(-50%, -50%);
       cursor: pointer;
-      z-index: 2;
-      /* Debug color - remove after positioning is final */
-      /* background-color: rgba(255, 0, 255, 0.2); */
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <!-- Fullscreen video background -->
+
+  <!-- Fullscreen background video -->
   <video autoplay muted loop playsinline>
-    <source src="videos/mainpage.mp4" type="video/mp4" />
+    <source src="https://raw.githubusercontent.com/cafelatte11/birthday_app/main/videos/mainpage.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- Clickable middle area -->
+  <!-- Invisible clickable envelope area -->
   <a href="page2.html" class="click-target"></a>
+
 </body>
 </html>
