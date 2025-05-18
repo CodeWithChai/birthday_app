@@ -32,26 +32,26 @@
       position: absolute;
       top: 85.1%;
       left: 51.3%;
-      width: 33.6%;
-      height: 20.6%;
+      width: 103.4px;
+      height: 103px;
       transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 1;
     }
 
     .click-target:hover {
-      outline: 2px solid pink; /* For testing only; remove in production */
+      outline: 2px solid pink; /* For debugging — remove this in production */
     }
   </style>
 </head>
 <body>
   <!-- Video background -->
   <video autoplay muted loop playsinline>
-    <source src="videos/main.mp4" type="video/mp4">
+    <source src="videos/main.MP4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Clickable invisible envelope area -->
+  <!-- Clickable area over the pink envelope -->
   <a href="page2.html" class="click-target"></a>
 </body>
 </html>
