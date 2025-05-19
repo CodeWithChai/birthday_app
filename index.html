@@ -1,136 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday - Page 1</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-            font-family: sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>HBD BABY</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: black;
+    }
 
-        .background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-        }
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-        .envelope {
-            width: 300px;
-            max-width: 80%;
-            cursor: pointer;
-            transition: transform 0.3s;
-            margin: 10px 0;
-        }
-
-        .envelope:hover {
-            transform: scale(1.05);
-        }
-
-        #opened,
-        #letter,
-        #continueImage,
-        #openHint {
-            display: none;
-        }
-
-        #letter {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease;
-        }
-
-        #letter.show {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        #continueImage {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 150px;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        #continueImage.show {
-            display: block;
-            opacity: 1;
-        }
-
-        @keyframes fadeInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        #openHint {
-            position: absolute;
-            top: 68%;
-            left: 55%;
-            width: 120px;
-        }
-
-        #openHint.show {
-            display: block;
-            animation: fadeInLeft 1s ease forwards;
-        }
-    </style>
+    .click-target {
+      position: absolute;
+      top: 57%;   /* tweak vertically */
+      left: 40%;  /* tweak horizontally */
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
-    <video autoplay muted playsinline loop class="background-video">
-        <source src="videos/mainpage.mp4" type="video/mp4">
-    </video>
 
-    <img id="closed" class="envelope" src="images/closed_envelope.png" onclick="openEnvelope()">
-    <img id="opened" class="envelope" src="images/opened_envelope.png">
-    <img id="letter" class="envelope" src="images/birthday_letter.png">
-    <img id="openHint" src="images/open.png">
+  <!-- Background video -->
+  <video autoplay muted loop playsinline>
+    <source src="videos/mainpage.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-    <!-- Image acting as continue button -->
-    <a href="page2.html">
-        <img id="continueImage" src="images/continue.png" alt="Continue">
-    </a>
+  <!-- Clickable area over pink envelope -->
+  <a href="page2.html" class="click-target"></a>
 
-    <script>
-        function openEnvelope() {
-            document.getElementById('closed').style.display = 'none';
-            document.getElementById('opened').style.display = 'block';
-
-            setTimeout(() => {
-                document.getElementById('letter').classList.add('show');
-            }, 3000);
-
-            setTimeout(() => {
-                document.getElementById('continueImage').classList.add('show');
-            }, 4000);
-
-            setTimeout(() => {
-                document.getElementById('openHint').classList.add('show');
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
