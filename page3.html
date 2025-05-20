@@ -29,18 +29,18 @@
       height: 315.9px;
       left: 68.8px;
       top: 226.6px;
-      transform: rotate(7.8deg) translateY(100%);
+      transform: translateY(0); /* No rotation */
       transition: transform 1s ease-out, top 1s ease-out, left 1s ease-out, width 1s ease-out, height 1s ease-out;
       opacity: 0;
     }
 
     .letter.show {
-      transform: rotate(7.8deg) translateY(-60px);
+      transform: translateY(-80px); /* Slide up animation */
       opacity: 1;
     }
 
     .letter.enlarge {
-      transform: rotate(0deg) translate(-50%, -50%) scale(1.3);
+      transform: translate(-50%, -50%) scale(1.3); /* Code 2 enlargement */
       top: 50%;
       left: 50%;
       width: auto;
@@ -64,12 +64,12 @@
     window.onload = () => {
       const letter = document.getElementById("letter");
 
-      // Start slide-up animation
+      // Slide the letter up slightly
       setTimeout(() => {
         letter.classList.add("show");
       }, 500);
 
-      // Enlarge and center after 2 seconds
+      // Then enlarge and center it
       setTimeout(() => {
         letter.classList.add("enlarge");
       }, 2500);
