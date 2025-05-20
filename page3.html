@@ -1,32 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday - Page 3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Birthday Letter</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: black;
     }
 
     video {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
+      z-index: -1;
+    }
+
+    .letter {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 60vw;
+      max-width: 350px;
+      opacity: 0;
+      transition: transform 1s ease-out, opacity 1s ease-out;
+    }
+
+    .letter.show {
+      transform: translateX(-50%) translateY(0%);
+      opacity: 1;
+    }
+
+    .letter.enlarge {
+      transform: translateX(-50%) translateY(-40%) scale(1.6);
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <video autoplay muted playsinline loop>
-    <source src="videos/continue.mp4" type="video/mp4">
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline>
+    <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+
+  <!-- Letter Image -->
+  <img src="images/birthday greet!.png" alt="Birthday Letter" class="letter" id="letter" />
+
+  <script>
+    window.onload = () => {
+      const letter = document.getElementById("letter");
+
+      // Slide up after short delay
+      setTimeout(() => {
+        letter.classList.add("show");
+      }, 500); // Start sliding up after 0.5s
+
+      // Enlarge after 2 seconds
+      setTimeout(() => {
+        letter.classList.add("enlarge");
+      }, 2500);
+    };
+  </script>
+
 </body>
 </html>
