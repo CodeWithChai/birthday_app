@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Happy Birthday - Page 2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>HBD BABY - Page 2</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: none;
+    }
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background-color: none;
-            touch-action: manipulation;
-        }
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-        .background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .center-click {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 120px;
-            height: 120px;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            z-index: 1;
-        }
-    </style>
+    .click-target {
+      position: absolute;
+      top: 50%;    /* Adjust vertically if needed */
+      left: 50%;   /* Adjust horizontally if needed */
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      cursor: pointer;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
 
-    <video autoplay muted loop playsinline class="background-video">
-        <source src="videos/page2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
+  <!-- Background video for page 2 -->
+  <video autoplay muted loop playsinline>
+    <source src="videos/page2.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-    <!-- Invisible center link to next page -->
-    <a href="page3.html" class="center-click"></a>
+  <!-- Center click area to go to page3.html -->
+  <a href="page3.html" class="click-target"></a>
 
 </body>
 </html>
