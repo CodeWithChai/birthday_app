@@ -21,6 +21,7 @@
       height: 100vh;
       object-fit: cover;
       z-index: -2;
+      background: transparent;
     }
 
     .card1 {
@@ -36,12 +37,6 @@
 
     .card1.slide-up {
       transform: rotate(7.8deg) translateY(0);
-    }
-
-    .card1.flip {
-      transition: transform 1s ease;
-      transform: rotateY(180deg) rotate(7.8deg) translateY(0);
-      transform-style: preserve-3d;
     }
 
     .card2 {
@@ -67,7 +62,7 @@
       right: 30px;
       font-size: 20px;
       text-decoration: none;
-      background: rgba(0, 0, 0, 0.6);
+      background: pink;
       color: white;
       padding: 12px 24px;
       border-radius: 14px;
@@ -84,7 +79,7 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Card that slides and flips -->
+  <!-- Card that slides out -->
   <img src="images/card1.png" class="card1" id="card1" />
 
   <!-- Enlarged letter -->
@@ -98,17 +93,12 @@
       const card1 = document.getElementById("card1");
       const card2 = document.getElementById("card2");
 
-      // Slide up after 5 seconds
+      // Slide up the card after 5 seconds
       setTimeout(() => {
         card1.classList.add("slide-up");
       }, 5000);
 
-      // Flip after 7 seconds
-      setTimeout(() => {
-        card1.classList.add("flip");
-      }, 7000);
-
-      // Show the full letter after 7 seconds too (optional)
+      // After 7 seconds, show the full letter
       setTimeout(() => {
         card2.classList.add("show");
       }, 7000);
