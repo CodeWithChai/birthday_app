@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Happy Birthday - Page 3</title>
+  <title>Birthday Letter</title>
   <style>
     html, body {
       margin: 0;
@@ -20,89 +20,60 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      z-index: -2;
-      background: transparent;
+      z-index: -1;
     }
 
-    .card1 {
+    .letter {
       position: absolute;
       width: 308px;
       height: 315.9px;
       left: 68.8px;
       top: 226.6px;
-      transform: rotate(7.8deg) translateY(100%);
-      transition: transform 1.5s ease-out;
-      z-index: 2;
-    }
-
-    .card1.slide-up {
       transform: rotate(7.8deg) translateY(0);
+      transition: transform 1s ease-out, top 1s ease-out, left 1s ease-out, width 1s ease-out, height 1s ease-out;
+      opacity: 0;
     }
 
-    .card2 {
-      position: absolute;
-      width: 90%;
-      max-width: 350px;
+    .letter.show {
+      transform: rotate(7.8deg) translateY(-80px); /* gentle slide up from envelope */
+      opacity: 1;
+    }
+
+    .letter.enlarge {
+      transform: rotate(0deg) translate(-50%, -50%) scale(1.3);
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0;
-      transition: opacity 1s ease, transform 1s ease;
-      z-index: 3;
-    }
-
-    .card2.show {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    a.continue {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      font-size: 20px;
-      text-decoration: none;
-      background: pink;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 14px;
-      font-family: sans-serif;
-      z-index: 4;
+      width: auto;
+      height: 80vh;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Video -->
-  <video autoplay muted playsinline loop>
+  <!-- Background video -->
+  <video autoplay muted loop playsinline>
     <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- Card that slides out -->
-  <img src="images/card1.png" class="card1" id="card1" />
-
-  <!-- Enlarged letter -->
-  <img src="images/card2.png" class="card2" id="card2" />
-
-  <!-- Continue Button -->
-  <a href="page4.html" class="continue">Continue</a>
+  <!-- Letter Image -->
+  <img src="images/birthday greet!.png" alt="Birthday Letter" class="letter" id="letter" />
 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const card1 = document.getElementById("card1");
-      const card2 = document.getElementById("card2");
+    window.onload = () => {
+      const letter = document.getElementById("letter");
 
-      // Slide up the card after 5 seconds
+      // Letter slides out from envelope (not from screen bottom)
       setTimeout(() => {
-        card1.classList.add("slide-up");
-      }, 5000);
+        letter.classList.add("show");
+      }, 500);
 
-      // After 7 seconds, show the full letter
+      // Then letter enlarges and centers
       setTimeout(() => {
-        card2.classList.add("show");
-      }, 7000);
-    });
+        letter.classList.add("enlarge");
+      }, 2500);
+    };
   </script>
 
 </body>
