@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Birthday Letter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Card</title>
   <style>
     html, body {
       margin: 0;
-      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-      width: 100%;
+      padding: 0;
       height: 100%;
       overflow: hidden;
-      font-family: sans-serif;
+      background: black;
     }
 
     video {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
@@ -24,52 +23,67 @@
       z-index: -1;
     }
 
-    .letter {
+    .card-container {
       position: absolute;
-      width: 50vw;
-      max-width: 320px;
-      aspect-ratio: 1 / 1.025;
-      left: 50%;
-      top: 60%;
-      transform: translate(-50%, 0);
-      transition: transform 1.2s ease, top 1.2s ease, width 1s ease, height 1s ease, opacity 1s ease;
-      opacity: 0;
-    }
-
-    .letter.show {
-      top: 40%;
-      transform: translate(-50%, -20%);
-      opacity: 1;
-    }
-
-    .letter.enlarge {
       top: 50%;
-      transform: translate(-50%, -50%) scale(1.3);
-      height: 60vh;
-      width: auto;
-      z-index: 2;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      perspective: 2000px;
+      width: 60vw;
+      max-width: 400px;
+      height: auto;
+    }
+
+    .card {
+      width: 100%;
+      height: auto;
+      transform-style: preserve-3d;
+      transition: transform 1s ease-in-out;
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      backface-visibility: hidden;
+      border-radius: 10px;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .flip {
+      transform: rotateY(180deg);
     }
 
     #continue-btn {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      background-color: #ff69b4; /* pink */
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 20px;
+      background-color: pink;
       color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
+      font-weight: bold;
       font-size: 16px;
+      border: none;
+      border-radius: 12px;
       cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
-      z-index: 3;
+      display: none;
+      z-index: 10;
     }
 
-    #continue-btn.show {
-      opacity: 1;
-      pointer-events: auto;
+    @media (max-width: 500px) {
+      .card-container {
+        width: 80vw;
+      }
+
+      #continue-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
@@ -81,32 +95,36 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Letter Image -->
-  <img src="images/birthday greet!.png" alt="Birthday Letter" class="letter" id="letter" />
+  <!-- Card container -->
+  <div class="card-container" id="card-container" style="opacity: 0;">
+    <div class="card" id="card">
+      <img src="images/card 1.png" alt="Card Cover" class="front" />
+      <img src="images/card 2.png" alt="Card Message" class="back" />
+    </div>
+  </div>
 
   <!-- Continue Button -->
-  <button id="continue-btn">Continue</button>
+  <button id="continue-btn" onclick="location.href='page4.html'">Continue</button>
 
   <script>
-    window.onload = () => {
-      const letter = document.getElementById("letter");
-      const continueBtn = document.getElementById("continue-btn");
+    const container = document.getElementById("card-container");
+    const card = document.getElementById("card");
+    const button = document.getElementById("continue-btn");
 
-      // Step 1: Show letter
-      setTimeout(() => {
-        letter.classList.add("show");
-      }, 500);
+    // Step 1: Show card after 5s
+    setTimeout(() => {
+      container.style.opacity = 1;
+    }, 5000);
 
-      // Step 2: Enlarge for reading
-      setTimeout(() => {
-        letter.classList.add("enlarge");
-      }, 2000);
+    // Step 2: Flip open after 6s (5s delay + 1s card visible)
+    setTimeout(() => {
+      card.classList.add("flip");
+    }, 11000); // 5s wait + 6s delay
 
-      // Step 3: Show continue button after 10 seconds of reading
-      setTimeout(() => {
-        continueBtn.classList.add("show");
-      }, 12000); // 2s animation + 10s reading
-    };
+    // Step 3: Show continue button after 10s of message view
+    setTimeout(() => {
+      button.style.display = "block";
+    }, 21000); // 5s wait + 6s + 10s = 21s
   </script>
 
 </body>
