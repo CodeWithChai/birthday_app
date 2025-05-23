@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birthday Card</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
       height: 100%;
       overflow: hidden;
-      font-family: sans-serif;
+      background: black;
     }
 
     video {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
@@ -26,107 +25,106 @@
 
     .card-container {
       position: absolute;
-      top: 226px;
-      left: 68px;
-      width: 308px;
-      height: 316px;
-      perspective: 1000px;
-      opacity: 0;
-      transform: translateY(100px); /* Start below envelope */
-      transition: transform 1s ease-out, opacity 1s ease-out;
-    }
-
-    .card-container.show {
-      opacity: 1;
-      transform: translateY(0); /* Slide up smoothly */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      perspective: 2000px;
+      width: 60vw;
+      max-width: 400px;
+      height: auto;
     }
 
     .card {
       width: 100%;
-      height: 100%;
+      height: auto;
       transform-style: preserve-3d;
-      transition: transform 1s;
-      position: relative;
+      transition: transform 1s ease-in-out;
     }
 
-    .card.flip {
-      transform: rotateY(180deg); /* Flip horizontally */
-    }
-
-    .face {
-      position: absolute;
+    .card img {
       width: 100%;
-      height: 100%;
+      display: block;
       backface-visibility: hidden;
-    }
-
-    .front {
-      background-image: url("images/card1.png");
-      background-size: cover;
+      border-radius: 10px;
     }
 
     .back {
-      background-image: url("images/card2.png");
-      background-size: cover;
+      transform: rotateY(180deg);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .flip {
       transform: rotateY(180deg);
     }
 
-    .continue-btn {
-      position: absolute;
+    #continue-btn {
+      position: fixed;
       bottom: 30px;
       right: 30px;
+      padding: 10px 20px;
       background-color: pink;
       color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
+      font-weight: bold;
       font-size: 16px;
+      border: none;
+      border-radius: 12px;
       cursor: pointer;
       display: none;
-      z-index: 3;
+      z-index: 10;
+    }
+
+    @media (max-width: 500px) {
+      .card-container {
+        width: 80vw;
+      }
+
+      #continue-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background envelope video -->
+  <!-- Background video -->
   <video autoplay muted loop playsinline>
     <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
   <!-- Card container -->
-  <div class="card-container" id="cardContainer">
+  <div class="card-container" id="card-container" style="opacity: 0;">
     <div class="card" id="card">
-      <div class="face front"></div>
-      <div class="face back"></div>
+      <img src="images/card1.png" alt="Card Cover" class="front" />
+      <img src="images/card2.png" alt="Card Message" class="back" />
     </div>
   </div>
 
-  <!-- Continue button -->
-  <button class="continue-btn" id="continueBtn" onclick="window.location.href='page4.html'">Continue</button>
+  <!-- Continue Button -->
+  <button id="continue-btn" onclick="location.href='page4.html'">Continue</button>
 
   <script>
-    window.onload = () => {
-      const container = document.getElementById('cardContainer');
-      const card = document.getElementById('card');
-      const btn = document.getElementById('continueBtn');
+    const container = document.getElementById("card-container");
+    const card = document.getElementById("card");
+    const button = document.getElementById("continue-btn");
 
-      // Step 1: Slide card up from envelope after 5s
-      setTimeout(() => {
-        container.classList.add('show');
-      }, 5000);
+    // Step 1: Show card after 5s
+    setTimeout(() => {
+      container.style.opacity = 1;
+    }, 5000);
 
-      // Step 2: Flip card after 6s (after it's visible)
-      setTimeout(() => {
-        card.classList.add('flip');
-      }, 11000); // 5s + 6s
+    // Step 2: Flip open after 6s (5s delay + 1s card visible)
+    setTimeout(() => {
+      card.classList.add("flip");
+    }, 11000); // 5s wait + 6s delay
 
-      // Step 3: Show Continue button 10s after flipping
-      setTimeout(() => {
-        btn.style.display = 'block';
-      }, 21000); // 5s + 6s + 10s
-    };
+    // Step 3: Show continue button after 10s of message view
+    setTimeout(() => {
+      button.style.display = "block";
+    }, 21000); // 5s wait + 6s + 10s = 21s
   </script>
 
 </body>
