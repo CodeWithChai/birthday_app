@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Birthday Card</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       overflow: hidden;
-      font-family: 'Arial', sans-serif;
+      font-family: sans-serif;
     }
 
     video {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
@@ -25,85 +26,105 @@
 
     .card-container {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60vw;
-      max-width: 400px;
+      top: 226px;
+      left: 68px;
+      width: 308px;
+      height: 316px;
+      perspective: 1000px;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: top 1s ease-out, opacity 1s ease-out;
     }
 
-    .card-container img {
+    .card-container.show {
+      top: 146px; /* slide up 80px */
+      opacity: 1;
+    }
+
+    .card {
       width: 100%;
-      border-radius: 10px;
-      display: block;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      position: relative;
     }
 
-    #continue-btn {
-      position: fixed;
+    .card.flip {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .front {
+      background-image: url("images/card1.png");
+      background-size: cover;
+    }
+
+    .back {
+      background-image: url("images/card2.png");
+      background-size: cover;
+      transform: rotateY(180deg);
+    }
+
+    .continue-btn {
+      position: absolute;
       bottom: 30px;
       right: 30px;
-      padding: 12px 24px;
-      background-color: #ff69b4; /* pink */
+      background-color: pink;
       color: white;
-      font-weight: bold;
-      font-size: 16px;
       border: none;
-      border-radius: 12px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
       display: none;
-      z-index: 10;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 500px) {
-      .card-container {
-        width: 80vw;
-      }
-
-      #continue-btn {
-        font-size: 14px;
-        padding: 10px 20px;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background video -->
+  <!-- Background envelope video -->
   <video autoplay muted loop playsinline>
     <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <!-- Card -->
-  <div class="card-container" id="card-container">
-    <img src="images/card 1.png" alt="Card Front" id="card-image">
+  <!-- Card container -->
+  <div class="card-container" id="cardContainer">
+    <div class="card" id="card">
+      <div class="face front"></div>
+      <div class="face back"></div>
+    </div>
   </div>
 
-  <!-- Continue Button -->
-  <button id="continue-btn" onclick="location.href='page4.html'">Continue</button>
+  <!-- Continue button -->
+  <button class="continue-btn" id="continueBtn" onclick="window.location.href='page4.html'">Continue</button>
 
   <script>
-    const cardContainer = document.getElementById("card-container");
-    const cardImage = document.getElementById("card-image");
-    const continueBtn = document.getElementById("continue-btn");
+    window.onload = () => {
+      const container = document.getElementById('cardContainer');
+      const card = document.getElementById('card');
+      const btn = document.getElementById('continueBtn');
 
-    // Show card after 5 seconds
-    setTimeout(() => {
-      cardContainer.style.opacity = 1;
-    }, 5000);
+      // Step 1: Slide card up after 5s
+      setTimeout(() => {
+        container.classList.add('show');
+      }, 5000);
 
-    // Change to message image after 6 seconds (5 + 6 = 11s)
-    setTimeout(() => {
-      cardImage.src = "images/card 2.png";
-    }, 11000);
+      // Step 2: Flip card open after 11s (5s + 6s)
+      setTimeout(() => {
+        card.classList.add('flip');
+      }, 11000);
 
-    // Show continue button after 10 seconds of message view (11 + 10 = 21s)
-    setTimeout(() => {
-      continueBtn.style.display = "block";
-    }, 21000);
+      // Step 3: Show Continue button after 21s (5 + 6 + 10)
+      setTimeout(() => {
+        btn.style.display = 'block';
+      }, 21000);
+    };
   </script>
 
 </body>
