@@ -32,12 +32,13 @@
       height: 316px;
       perspective: 1000px;
       opacity: 0;
-      transition: top 1s ease-out, opacity 1s ease-out;
+      transform: translateY(100px); /* Start below envelope */
+      transition: transform 1s ease-out, opacity 1s ease-out;
     }
 
     .card-container.show {
-      top: 146px; /* slide up 80px */
       opacity: 1;
+      transform: translateY(0); /* Slide up smoothly */
     }
 
     .card {
@@ -49,7 +50,7 @@
     }
 
     .card.flip {
-      transform: rotateY(180deg);
+      transform: rotateY(180deg); /* Flip horizontally */
     }
 
     .face {
@@ -82,6 +83,7 @@
       font-size: 16px;
       cursor: pointer;
       display: none;
+      z-index: 3;
     }
   </style>
 </head>
@@ -110,20 +112,20 @@
       const card = document.getElementById('card');
       const btn = document.getElementById('continueBtn');
 
-      // Step 1: Slide card up after 5s
+      // Step 1: Slide card up from envelope after 5s
       setTimeout(() => {
         container.classList.add('show');
       }, 5000);
 
-      // Step 2: Flip card open after 11s (5s + 6s)
+      // Step 2: Flip card after 6s (after it's visible)
       setTimeout(() => {
         card.classList.add('flip');
-      }, 11000);
+      }, 11000); // 5s + 6s
 
-      // Step 3: Show Continue button after 21s (5 + 6 + 10)
+      // Step 3: Show Continue button 10s after flipping
       setTimeout(() => {
         btn.style.display = 'block';
-      }, 21000);
+      }, 21000); // 5s + 6s + 10s
     };
   </script>
 
