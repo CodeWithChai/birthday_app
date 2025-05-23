@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Birthday Card</title>
   <style>
     html, body {
@@ -10,6 +10,7 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
+      font-family: 'Arial', sans-serif;
     }
 
     video {
@@ -27,43 +28,24 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      perspective: 2000px;
       width: 60vw;
       max-width: 400px;
-      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    .card {
+    .card-container img {
       width: 100%;
-      height: auto;
-      transform-style: preserve-3d;
-      transition: transform 1s ease-in-out;
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-      backface-visibility: hidden;
       border-radius: 10px;
-    }
-
-    .back {
-      transform: rotateY(180deg);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .flip {
-      transform: rotateY(180deg);
+      display: block;
     }
 
     #continue-btn {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      padding: 10px 20px;
-      background-color: pink;
+      padding: 12px 24px;
+      background-color: #ff69b4; /* pink */
       color: white;
       font-weight: bold;
       font-size: 16px;
@@ -72,6 +54,7 @@
       cursor: pointer;
       display: none;
       z-index: 10;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
 
     @media (max-width: 500px) {
@@ -81,7 +64,7 @@
 
       #continue-btn {
         font-size: 14px;
-        padding: 8px 16px;
+        padding: 10px 20px;
       }
     }
   </style>
@@ -94,36 +77,33 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Card container -->
-  <div class="card-container" id="card-container" style="opacity: 0;">
-    <div class="card" id="card">
-      <img src="images/card 1.png" alt="Card Cover" class="front" />
-      <img src="images/card 2.png" alt="Card Message" class="back" />
-    </div>
+  <!-- Card -->
+  <div class="card-container" id="card-container">
+    <img src="images/card 1.png" alt="Card Front" id="card-image">
   </div>
 
   <!-- Continue Button -->
   <button id="continue-btn" onclick="location.href='page4.html'">Continue</button>
 
   <script>
-    const container = document.getElementById("card-container");
-    const card = document.getElementById("card");
-    const button = document.getElementById("continue-btn");
+    const cardContainer = document.getElementById("card-container");
+    const cardImage = document.getElementById("card-image");
+    const continueBtn = document.getElementById("continue-btn");
 
-    // Step 1: Show card after 5s
+    // Show card after 5 seconds
     setTimeout(() => {
-      container.style.opacity = 1;
+      cardContainer.style.opacity = 1;
     }, 5000);
 
-    // Step 2: Flip open after 6s (5s delay + 1s card visible)
+    // Change to message image after 6 seconds (5 + 6 = 11s)
     setTimeout(() => {
-      card.classList.add("flip");
-    }, 11000); // 5s wait + 6s delay
+      cardImage.src = "images/card 2.png";
+    }, 11000);
 
-    // Step 3: Show continue button after 10s of message view
+    // Show continue button after 10 seconds of message view (11 + 10 = 21s)
     setTimeout(() => {
-      button.style.display = "block";
-    }, 21000); // 5s wait + 6s + 10s = 21s
+      continueBtn.style.display = "block";
+    }, 21000);
   </script>
 
 </body>
