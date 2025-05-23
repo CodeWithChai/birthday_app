@@ -1,90 +1,142 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  background: black;
-  box-sizing: border-box; /* Add this */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Birthday Card</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+      box-sizing: border-box;
+    }
 
-*, *::before, *::after {
-  box-sizing: inherit; /* Make all elements use border-box */
-}
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
 
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-}
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
 
-.card-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  perspective: 2000px;
-  width: 90vw; /* Use 90vw instead of 60vw */
-  max-width: 400px;
-  height: auto;
-  max-height: 90vh; /* Prevent overflow vertically */
-}
+    .card-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      perspective: 2000px;
+      width: 90vw;
+      max-width: 400px;
+      max-height: 90vh;
+      height: auto;
+    }
 
-.card {
-  width: 100%;
-  height: auto;
-  transform-style: preserve-3d;
-  transition: transform 1s ease-in-out;
-}
+    .card {
+      width: 100%;
+      height: auto;
+      transform-style: preserve-3d;
+      transition: transform 1s ease-in-out;
+      position: relative;
+    }
 
-.card img {
-  width: 100%;
-  max-width: 100%; /* Ensure image never exceeds container */
-  height: auto;
-  display: block;
-  backface-visibility: hidden;
-  border-radius: 10px;
-}
+    .card img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      backface-visibility: hidden;
+      border-radius: 10px;
+    }
 
-.back {
-  transform: rotateY(180deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* Make sure back image fills container */
-  height: auto;
-}
+    .back {
+      transform: rotateY(180deg);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
 
-.flip {
-  transform: rotateY(180deg);
-}
+    .flip {
+      transform: rotateY(180deg);
+    }
 
-#continue-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 10px 20px;
-  background-color: pink;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  display: none;
-  z-index: 10;
-}
+    #continue-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 10px 20px;
+      background-color: pink;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: none;
+      z-index: 10;
+    }
 
-@media (max-width: 500px) {
-  .card-container {
-    width: 90vw; /* Increase width for smaller screens */
-  }
+    @media (max-width: 500px) {
+      .card-container {
+        width: 90vw;
+      }
 
-  #continue-btn {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-}
+      #continue-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline>
+    <source src="videos/page3.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Card container -->
+  <div class="card-container" id="card-container" style="opacity: 0;">
+    <div class="card" id="card">
+      <img src="images/card1.png" alt="Card Cover" class="front" />
+      <img src="images/card2.png" alt="Card Message" class="back" />
+    </div>
+  </div>
+
+  <!-- Continue Button -->
+  <button id="continue-btn" onclick="location.href='page4.html'">Continue</button>
+
+  <script>
+    const container = document.getElementById("card-container");
+    const card = document.getElementById("card");
+    const button = document.getElementById("continue-btn");
+
+    // Step 1: Show card after 5s
+    setTimeout(() => {
+      container.style.opacity = 1;
+    }, 5000);
+
+    // Step 2: Flip open after 6s (5s delay + 1s card visible)
+    setTimeout(() => {
+      card.classList.add("flip");
+    }, 11000); // 5s wait + 6s delay
+
+    // Step 3: Show continue button after 10s of message view
+    setTimeout(() => {
+      button.style.display = "block";
+    }, 21000); // 5s wait + 6s + 10s = 21s
+  </script>
+
+</body>
+</html>
