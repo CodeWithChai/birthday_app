@@ -11,6 +11,7 @@
       height: 100%;
       overflow: hidden;
       box-sizing: border-box;
+      background-color: black; /* Prevent white flash */
     }
 
     *, *::before, *::after {
@@ -29,15 +30,15 @@
 
     .card-container {
       position: absolute;
-      top: 50%;
+      top: 60%; /* Start around the envelope’s Y position */
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 0); /* Default position: below envelope */
       perspective: 2000px;
       width: 90vw;
       max-width: 400px;
       max-height: 90vh;
       height: auto;
-      opacity: 0; /* Start hidden */
+      opacity: 0;
     }
 
     .card {
@@ -97,10 +98,9 @@
       }
     }
 
-    /* Slide-up animation */
     @keyframes slideUp {
       from {
-        transform: translate(-50%, 50%);
+        transform: translate(-50%, 40px); /* start 40px lower */
         opacity: 0;
       }
       to {
