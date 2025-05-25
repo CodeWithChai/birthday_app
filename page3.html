@@ -30,20 +30,21 @@
 
     .card-container {
       position: absolute;
-      top: 70%; /* starts low like coming out of envelope */
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -50%) scale(0);
       perspective: 2000px;
       width: 90vw;
       max-width: 400px;
       max-height: 90vh;
       height: auto;
       opacity: 0;
-      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+      transition: transform 0.6s ease-out, opacity 0.6s ease-out;
     }
 
-    .slide-up {
-      transform: translate(-50%, -50%); /* slides to envelope area */
+    /* Replaces .slide-up with pop-out scale */
+    .pop-out {
+      transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
 
@@ -129,21 +130,22 @@
     const card = document.getElementById("card");
     const button = document.getElementById("continue-btn");
 
-    // Step 1: Slide up card after 5s
+    // Step 1: Pop out card (scale from 0 to 1) after 5s
     setTimeout(() => {
-      container.classList.add("slide-up");
+      container.classList.add("pop-out");
     }, 5000);
 
-    // Step 2: Flip open after 6s (5 + 1)
+    // Step 2: Flip open after 6s (1s after pop out)
     setTimeout(() => {
       card.classList.add("flip");
-    }, 11000);
+    }, 6000);
 
     // Step 3: Show continue button after 10s of message view
     setTimeout(() => {
       button.style.display = "block";
-    }, 21000);
+    }, 16000);
   </script>
 
 </body>
 </html>
+
