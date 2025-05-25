@@ -37,6 +37,7 @@
       max-width: 400px;
       max-height: 90vh;
       height: auto;
+      opacity: 0; /* Start hidden */
     }
 
     .card {
@@ -95,6 +96,22 @@
         padding: 8px 16px;
       }
     }
+
+    /* Slide-up animation */
+    @keyframes slideUp {
+      from {
+        transform: translate(-50%, 50%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+
+    .card-container.slide-up {
+      animation: slideUp 1s ease-out forwards;
+    }
   </style>
 </head>
 <body>
@@ -106,7 +123,7 @@
   </video>
 
   <!-- Card container -->
-  <div class="card-container" id="card-container" style="opacity: 0;">
+  <div class="card-container" id="card-container">
     <div class="card" id="card">
       <img src="images/card1.png" alt="Card Cover" class="front" />
       <img src="images/card2.png" alt="Card Message" class="back" />
@@ -121,20 +138,20 @@
     const card = document.getElementById("card");
     const button = document.getElementById("continue-btn");
 
-    // Step 1: Show card after 5s
+    // Step 1: Slide up card after 5s
     setTimeout(() => {
-      container.style.opacity = 1;
+      container.classList.add("slide-up");
     }, 5000);
 
-    // Step 2: Flip open after 6s (5s delay + 1s card visible)
+    // Step 2: Flip open after 11s
     setTimeout(() => {
       card.classList.add("flip");
-    }, 11000); // 5s wait + 6s delay
+    }, 11000);
 
-    // Step 3: Show continue button after 10s of message view
+    // Step 3: Show continue button after 21s
     setTimeout(() => {
       button.style.display = "block";
-    }, 21000); // 5s wait + 6s + 10s = 21s
+    }, 21000);
   </script>
 
 </body>
