@@ -11,7 +11,6 @@
       height: 100%;
       overflow: hidden;
       box-sizing: border-box;
-      background-color: black; /* Prevent white flash */
     }
 
     *, *::before, *::after {
@@ -30,15 +29,21 @@
 
     .card-container {
       position: absolute;
-      top: 60%; /* Start around the envelope’s Y position */
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, 0); /* Default position: below envelope */
+      transform: translate(-50%, -50%);
       perspective: 2000px;
       width: 90vw;
       max-width: 400px;
       max-height: 90vh;
       height: auto;
       opacity: 0;
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    }
+
+    .slide-up {
+      transform: translate(-50%, -150%);
+      opacity: 1;
     }
 
     .card {
@@ -76,7 +81,7 @@
       bottom: 30px;
       right: 30px;
       padding: 10px 20px;
-      background-color: hot pink;
+      background-color: hotpink;
       color: white;
       font-weight: bold;
       font-size: 16px;
@@ -97,27 +102,12 @@
         padding: 8px 16px;
       }
     }
-
-    @keyframes slideUp {
-      from {
-        transform: translate(-50%, 40px); /* start 40px lower */
-        opacity: 0;
-      }
-      to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
-    }
-
-    .card-container.slide-up {
-      animation: slideUp 1s ease-out forwards;
-    }
   </style>
 </head>
 <body>
 
   <!-- Background video -->
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline preload="auto" poster="images/fallback.jpg">
     <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
@@ -143,12 +133,12 @@
       container.classList.add("slide-up");
     }, 5000);
 
-    // Step 2: Flip open after 11s
+    // Step 2: Flip open after 6s (5s + 1s)
     setTimeout(() => {
       card.classList.add("flip");
     }, 11000);
 
-    // Step 3: Show continue button after 21s
+    // Step 3: Show continue button after 10s of message view
     setTimeout(() => {
       button.style.display = "block";
     }, 21000);
