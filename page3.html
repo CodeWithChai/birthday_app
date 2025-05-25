@@ -41,7 +41,6 @@
       transition: transform 0.6s ease-out, opacity 0.6s ease-out;
     }
 
-    /* Replaces .slide-up with pop-out scale */
     .pop-out {
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
@@ -107,7 +106,7 @@
 </head>
 <body>
 
-  <!-- Background video with poster fallback -->
+  <!-- Background video -->
   <video autoplay muted loop playsinline preload="auto" poster="images/fallback.jpg">
     <source src="videos/page3.mp4" type="video/mp4" />
     Your browser does not support the video tag.
@@ -129,22 +128,21 @@
     const card = document.getElementById("card");
     const button = document.getElementById("continue-btn");
 
-    // Step 1: Pop out card (scale from 0 to 1) after 5s
+    // Show card after 5s
     setTimeout(() => {
       container.classList.add("pop-out");
     }, 5000);
 
-    // Step 2: Flip open after 6s (1s after pop out)
+    // Flip card after 10s (5s after showing front)
     setTimeout(() => {
       card.classList.add("flip");
-    }, 6000);
+    }, 10000);
 
-    // Step 3: Show continue button after 10s of message view
+    // Show button after 20s (10s after flip)
     setTimeout(() => {
       button.style.display = "block";
-    }, 16000);
+    }, 20000);
   </script>
 
 </body>
 </html>
-
