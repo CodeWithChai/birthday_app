@@ -1,1 +1,81 @@
-page4
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Story</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .fade-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      opacity: 0;
+      transition: opacity 3s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video id="storyVideo" autoplay muted playsinline>
+    <source src="videos/story.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Optional content -->
+  <div class="content">
+    <h1>This is our story 💌</h1>
+    <p>...until the very last second.</p>
+  </div>
+
+  <!-- Fade to black overlay -->
+  <div class="fade-overlay" id="fadeOverlay"></div>
+
+  <script>
+    const video = document.getElementById('storyVideo');
+    const fadeOverlay = document.getElementById('fadeOverlay');
+
+    // When video is almost done, trigger fade
+    video.addEventListener('timeupdate', () => {
+      if (video.duration - video.currentTime <= 3) {
+        fadeOverlay.style.opacity = 1;
+      }
+    });
+  </script>
+
+</body>
+</html>
