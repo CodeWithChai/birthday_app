@@ -128,20 +128,20 @@
     const card = document.getElementById("card");
     const button = document.getElementById("continue-btn");
 
-    // Show card after 5s
+    // Step 1: Show card front after 5s
     setTimeout(() => {
       container.classList.add("pop-out");
-    }, 10000);
 
-    // Flip card after 10s (5s after showing front)
-    setTimeout(() => {
-      card.classList.add("flip");
-    }, 10000);
+      // Step 2: After it's shown, wait 5s, then flip
+      setTimeout(() => {
+        card.classList.add("flip");
+      }, 5000); // 5s after pop-out
+    }, 5000); // pop-out at 5s
 
-    // Show button after 20s (10s after flip)
+    // Step 3: Show continue button 10s after flip
     setTimeout(() => {
       button.style.display = "block";
-    }, 20000);
+    }, 20000); // 20s total from page load
   </script>
 
 </body>
