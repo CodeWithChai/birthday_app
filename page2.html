@@ -26,14 +26,21 @@
 
     .click-target {
       position: absolute;
-      top: 50%;    /* Adjust vertically if needed */
-      left: 50%;   /* Adjust horizontally if needed */
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       width: 120px;
       height: 120px;
       cursor: pointer;
       z-index: 1;
-      outline: none; /* removes blue box */
+      outline: none;
+      user-select: none;
+    }
+
+    .click-target:focus,
+    .click-target:active {
+      outline: none;
+      border: none;
     }
   </style>
 </head>
