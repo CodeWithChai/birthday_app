@@ -14,25 +14,33 @@
       background-color: none;
     }
 
+    :root {
+      --vh: 100%;
+    }
+
+    body {
+      height: calc(var(--vh, 1vh) * 100);
+    }
+
     video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
       object-fit: cover;
       z-index: -1;
     }
 
     .click-target {
       position: absolute;
-      top: 57%;   /* tweak vertically */
-      left: 40%;  /* tweak horizontally */
+      top: 57%;
+      left: 40%;
       width: 100px;
       height: 100px;
       cursor: pointer;
       z-index: 1;
-      outline: none; /* removes blue box */
+      outline: none;
     }
   </style>
 </head>
@@ -46,6 +54,17 @@
 
   <!-- Clickable area over pink envelope -->
   <a href="page2.html" class="click-target"></a>
+
+  <script>
+    // Fix 100vh issue on iOS Safari
+    function setVhUnit() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    setVhUnit();
+    window.addEventListener('resize', setVhUnit);
+  </script>
 
 </body>
 </html>
